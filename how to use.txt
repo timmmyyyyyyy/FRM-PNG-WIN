@@ -1,0 +1,258 @@
+# FRM-PNG-WIN
+
+### First Release – Windows x64
+
+A portable Fallout 1 and Fallout 2 asset browser, archive extractor, and graphics converter.
+
+---
+
+## 1. About FRM-PNG-WIN
+
+FRM-PNG-WIN is a Windows application designed to browse, extract, preview, and convert Fallout 1 and Fallout 2 game assets.
+
+Features include:
+
+* Browse Fallout DAT archives.
+* Search and filter archived files.
+* Preview supported assets.
+* Extract individual files or entire selections.
+* Batch convert supported Fallout graphics into PNG images.
+* Generate conversion reports and an HTML image gallery.
+* Work with both DAT archives and previously extracted game files.
+
+## 2. Starting the Application
+
+FRM-PNG-WIN is distributed as a completely portable application.
+
+**No installation, Python installation, or additional setup is required.**
+
+The package includes a custom embedded Python 3.14.10 environment with all required dependencies already included.
+
+### Launch Instructions
+
+1. Extract or copy the FRM-PNG-WIN folder to your computer or USB drive.
+2. Open the folder.
+3. Double-click `run.bat`.
+4. FRM-PNG-WIN will launch automatically.
+
+That's it. No installer or configuration is necessary.
+
+### Important
+
+* Keep the supplied folder structure intact.
+* Do not move or separate the application files, launcher, or embedded Python directory.
+* The application can run directly from a USB drive.
+* Nothing needs to be installed separately.
+* Designed for Windows 64-bit systems.
+
+## 3. Loading Fallout Files
+
+When the application opens, choose how you want to load your game assets.
+
+### Open DAT File(s)
+
+Select one or more Fallout DAT archives to browse their contents directly without manually extracting the archives first.
+
+### Open Fallout Folder
+
+Select your Fallout installation directory. The application searches the selected game folder for supported archives and game data.
+
+This is the recommended option when working with an installed copy of Fallout 1 or Fallout 2.
+
+### Convert an Already-Extracted Folder
+
+Select a directory containing previously extracted Fallout assets to browse, extract, or convert its contents.
+
+## 4. Browsing Files
+
+Once a source has been loaded, its available files appear in the file browser.
+
+Depending on the source, file information can include:
+
+* File name and relative path.
+* File size.
+* Compression information.
+* Source archive.
+
+### Searching
+
+Use the **Search path** field to find files by filename or directory path.
+
+For example:
+
+`HAPOWRAA`
+
+### Filtering by File Type
+
+Use the **Type** filter to narrow the displayed files by extension.
+
+Examples include:
+
+* `.FRM`
+* `.PAL`
+* `.FON`
+* `.RIX`
+
+### Regular Expression Search
+
+Enable **Regex** to use regular-expression patterns instead of standard text searches.
+
+### Selecting Files
+
+Standard Windows selection controls are supported:
+
+* **Ctrl + Click:** Select individual files.
+* **Shift + Click:** Select a continuous range of files.
+
+Multiple files can be processed together.
+
+## 5. Previewing Assets
+
+Select a file in the browser to view its information and preview, when supported.
+
+Previewing allows you to inspect assets before extracting or converting them.
+
+Not every file format supports direct previewing. Unsupported preview formats may still be available for extraction in their original format.
+
+## 6. Extracting Files
+
+FRM-PNG-WIN supports extracting individual files, multiple selected files, or all currently displayed files.
+
+Choose your extraction destination before starting.
+
+### Extract Selected
+
+Extracts the files currently selected in the browser.
+
+### Extract Everything Shown
+
+Extracts every file currently displayed in the browser.
+
+Active search terms and file-type filters determine which files are included.
+
+## 7. Converting Graphics to PNG
+
+FRM-PNG-WIN can batch convert supported Fallout graphics into PNG images.
+
+Choose your PNG output destination before starting a conversion.
+
+### Available Conversion Operations
+
+| Operation                         | Description                                               |
+| --------------------------------- | --------------------------------------------------------- |
+| Extract shown + convert to PNG    | Extracts displayed files and converts supported graphics. |
+| Extract selected + convert to PNG | Extracts selected files and converts supported graphics.  |
+
+Files that cannot be converted are still eligible for extraction in their original format.
+
+### Palette Handling
+
+Fallout FRM graphics rely on palette information to display their original colours correctly.
+
+When processing FRM files from DAT archives, the application also accounts for available `.PAL` files to provide the appropriate colour information during conversion.
+
+## 8. Supported Graphics Formats
+
+| Format  | Description                          | Conversion Output   |
+| ------- | ------------------------------------ | ------------------- |
+| FRM     | Fallout sprites and animation frames | PNG                 |
+| FR0–FR5 | Fallout frame and animation variants | PNG                 |
+| RIX     | Fallout image graphics               | PNG                 |
+| PAL     | Colour palette data                  | PNG palette preview |
+| FON     | Font data                            | PNG glyph atlas     |
+| AAF     | Antialiased font data                | PNG glyph atlas     |
+
+### FRM Animation Sheets
+
+FRM files can contain multiple animation directions and frames.
+
+The converter organizes these into sprite sheets, with separate rows for animation directions and columns for individual frames.
+
+This makes the resulting graphics easier to browse, inspect, and reuse in other projects.
+
+## 9. Output Organization
+
+FRM-PNG-WIN preserves the original relative directory structure when saving converted assets.
+
+For example, an original file located at:
+
+`art/critters/HAPOWRAA.FRM`
+
+Retains its relative location in the output:
+
+`art/critters/HAPOWRAA.png`
+
+Additional frame images may be saved in a corresponding subfolder.
+
+This helps maintain the original asset organization and makes it easier to identify where converted files came from.
+
+## 10. Conversion Reports
+
+After processing, FRM-PNG-WIN generates reports alongside the conversion output.
+
+| Report                    | Description                                     |
+| ------------------------- | ----------------------------------------------- |
+| `gallery_index.html`      | Interactive visual gallery of converted images. |
+| `conversion_report.csv`   | Spreadsheet-compatible conversion results.      |
+| `conversion_report.json`  | Detailed conversion information.                |
+| `failures.txt`            | Files that failed during conversion.            |
+| `unsupported.csv`         | Files that were not supported for conversion.   |
+| `palette_assignments.csv` | Palette assignments used during conversion.     |
+
+### Viewing the Image Gallery
+
+1. Open the PNG output location.
+2. Locate `gallery_index.html` in the associated reports folder.
+3. Double-click the HTML file.
+4. Browse your converted images in your web browser.
+
+### Reviewing Conversion Problems
+
+If an expected image is missing, check the generated reports:
+
+* `failures.txt` – Identifies conversion failures.
+* `unsupported.csv` – Identifies unsupported file formats.
+* `conversion_report.csv` – Provides an overview of conversion results.
+* `palette_assignments.csv` – Helps review palette selection.
+
+## 11. Progress and Cancellation
+
+During extraction and conversion, the application displays progress and status information.
+
+The progress indicator helps track the current operation.
+
+If you need to stop processing, use the **Cancel** control.
+
+Cancellation may take a short time to take effect depending on the operation currently being performed.
+
+## 12. Troubleshooting
+
+### The Application Does Not Open
+
+* Make sure you are double-clicking `run.bat`.
+* Confirm that the supplied folder structure is intact.
+* Check that you are using Windows 64-bit.
+
+### No Files Appear
+
+* Confirm that the selected DAT archive or directory contains Fallout game data.
+* Check that you selected the correct game directory.
+* Try opening an individual DAT archive.
+
+### A File Does Not Display a Preview
+
+Not every supported or extractable format has a preview. Try extracting the file in its original format.
+
+### An Image Is Missing After Conversion
+
+Check `failures.txt` and `unsupported.csv` to determine whether the file failed conversion or was not supported.
+
+### Converted Colours Do Not Look Correct
+
+Fallout graphics can depend on external palette information. Confirm that the relevant palette files are available and review `palette_assignments.csv`.
+
+---
+
+**FRM-PNG-WIN – First Public Release**
+
+Portable Windows x64 application. No installation required. Run directly from your computer or USB drive.
